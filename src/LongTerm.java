@@ -2,10 +2,17 @@
  * Created by Shima Abbasi on 6/29/2016.
  */
 public class LongTerm extends DepositType {
-    public int get () {
-        return  this.interestRate;
+    public LongTerm() {
+        super();
+        set();
+        get();
     }
-    public void set(int interestRate) {
-        this.interestRate = interestRate;
+
+    public int get() {
+        return interestRate;
+    }
+
+    public void set() {
+        super.interestRate = 20;
     }
 }

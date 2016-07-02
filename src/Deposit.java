@@ -6,17 +6,22 @@ import java.math.BigDecimal;
 public class Deposit {
 
     //----parameters-----------
-    int customerNumber, durationInDays;
-    double paidInterest;
-    String depositBalance;
-    BigDecimal depositBalance_BD = new BigDecimal(depositBalance);
+   public int customerNumber, durationInDays;
+   public double paidInterest;
+   public  String depositBalance;
+   BigDecimal depositBalance_BD = new BigDecimal(depositBalance);
+
+    public Deposit() {
+        int customerNumber ;
+        int durationInDays ;
+        BigDecimal depositBalance_BD;
+    }
 
     //-----objects---------------------
-    DepositType depositType_ob = new DepositType()
-            ;
+    DepositType depositType_OB = new DepositType();
     //-----methods----------------
-    public Double Calculate (){
-        return paidInterest = (depositType_ob.interestRate * durationInDays)/ 3600 ;
-      }
+         public Double Calculate (){
+        return paidInterest = (depositType_OB.interestRate * durationInDays)/ 3600 ;
+     }
 
 }

@@ -10,12 +10,14 @@ import org.w3c.dom.NodeList;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
-
+import java.util.Vector;
 
 public class Parser {
 
-    public static void main(String arg[]) {
 
+    public static void main(String arg[]) throws ClassNotFoundException {
+
+        Vector list = new Vector();
         try {
             //----loading file-------------------
             File fXmlFile = new File("src/input.XML");
@@ -40,21 +42,18 @@ public class Parser {
                 if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 
                     Element eElement = (Element) nNode;
-
-                    Class loadClass =  Class.forName(eElement.getElementsByTagName("depositType").item(0).getTextContent());
-                    Object loadObj = loadClass.newInstance();
-               //   loadClass.getDeclaredMethods()
-
-
-                   // Vector list = new Vector();
-                    //typeDep.   = Integer.parseInt( eElement.getElementsByTagName("customerNumber").item(0).getTextContent());
-                    System.out.println("depositType : " + eElement.getElementsByTagName("depositType").item(0).getTextContent());
-                    System.out.println("depositBalance : " + eElement.getElementsByTagName("depositBalance").item(0).getTextContent());
-                    System.out.println("durationInDays : " + eElement.getElementsByTagName("durationInDays").item(0).getTextContent());
+                    list.add(eElement.getElementsByTagName("customerNumber").item(0).getTextContent());
+                    list.add(eElement.getElementsByTagName("depositType").item(0).getTextContent());
+                    list.add(eElement.getElementsByTagName("depositBalance").item(0).getTextContent());
+                    list.add(eElement.getElementsByTagName("durationInDays").item(0).getTextContent());
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }
+        for(int i = 1 ; i<= list.size()-3; i+= 4) {
+            Object loadClassType = Class.forName(String.valueOf(list.get(i)));
+        }
         }
     }
 
