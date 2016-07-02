@@ -1,6 +1,7 @@
 /**
  * Created by Shima Abbasi on 6/29/2016.
  */
+<<<<<<< HEAD
 public class ShortTerm extends DepositType{
     public ShortTerm(){
         super();
@@ -16,3 +17,7 @@ public class ShortTerm extends DepositType{
     }
 }
 
+=======
+public class ShortTerm {
+}
+>>>>>>> origin/master

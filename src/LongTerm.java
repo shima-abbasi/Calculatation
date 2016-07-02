@@ -1,6 +1,7 @@
 /**
  * Created by Shima Abbasi on 6/29/2016.
  */
+<<<<<<< HEAD
 public class LongTerm extends DepositType {
     public LongTerm() {
         super();
@@ -15,4 +16,7 @@ public class LongTerm extends DepositType {
     public void set() {
         super.interestRate = 20;
     }
+=======
+public class LongTerm {
+>>>>>>> origin/master
 }
