@@ -7,4 +7,11 @@ public class DepositType {
         int interestRate;
     }
 
+    public int getInterestRate() {
+        return interestRate;
+    }
+
+    public void setInterestRate(int interestRate) {
+        this.interestRate = interestRate;
+    }
 }

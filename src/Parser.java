@@ -13,11 +13,15 @@ import java.io.File;
 import java.util.Vector;
 
 public class Parser {
+    Vector<Vector> list = new Vector<Vector>();
+    static Vector inner = new Vector();
 
+    public Parser() {
+
+    }
 
     public static void main(String arg[]) throws ClassNotFoundException {
 
-        Vector list = new Vector();
 
         try {
             //----loading file-------------------
@@ -28,44 +32,32 @@ public class Parser {
             //-----------------------------------
             doc.getDocumentElement().normalize();
             //-----------------------------------
-            System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
-
             NodeList nList = doc.getElementsByTagName("deposit");
 
-            System.out.println("----------------------------");
-
             for (int temp = 0; temp < nList.getLength(); temp++) {
-
                 Node nNode = nList.item(temp);
-
-                System.out.println("\nCurrent Element :" + nNode.getNodeName());
-
                 if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-
                     Element eElement = (Element) nNode;
-
-                    list.add(eElement.getElementsByTagName("customerNumber").item(0).getTextContent());
-                    list.add(eElement.getElementsByTagName("depositType").item(0).getTextContent());
-                    list.add(eElement.getElementsByTagName("depositBalance").item(0).getTextContent());
-                    list.add(eElement.getElementsByTagName("durationInDays").item(0).getTextContent());
-
-                    Class loadClass = Class.forName(eElement.getElementsByTagName("depositType").item(0).getTextContent());
-                    System.out.println("customerNumber : " + eElement.getElementsByTagName("customerNumber").item(0).getTextContent());
-                    System.out.println("depositType : " + eElement.getElementsByTagName("depositType").item(0).getTextContent());
-                    System.out.println("depositBalance : " + eElement.getElementsByTagName("depositBalance").item(0).getTextContent());
-                    System.out.println("durationInDays : " + eElement.getElementsByTagName("durationInDays").item(0).getTextContent());
-
+                    Object loadClassType = Class.forName(eElement.getElementsByTagName("depositType").item(0).getTextContent()).newInstance();
+                    Object load = Class.forName("Deposit").newInstance();
+                    inner.add(eElement.getElementsByTagName("customerNumber").item(0).getTextContent());
+                    inner.add(eElement.getElementsByTagName("depositType").item(0).getTextContent());
+                    inner.add(eElement.getElementsByTagName("depositBalance").item(0).getTextContent());
+                    inner.add(eElement.getElementsByTagName("durationInDays").item(0).getTextContent());
                 }
+                list.add(temp, inner);
+                inner = new Vector();
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        for(int i = 1 ; i<= list.size()-3; i+= 4) {
-            Object loadClassType = Class.forName(String.valueOf(list.get(i)));
-        }
-        }
+
+//        for (int i = 0; i <= list.size(); i++) {
+//            for (int j = 0; j <= inner.size(); j++) {
+//                // Object loadClassType = Class.forName();
+//            }
+//        }
 
     }
-
 }
