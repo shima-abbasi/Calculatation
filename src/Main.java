@@ -1,4 +1,5 @@
-import java.io.FileOutputStream;
+import java.io.FileNotFoundException;
+import java.io.RandomAccessFile;
 
 public class Main {
     Parser parserObj = new Parser();
@@ -8,9 +9,7 @@ public class Main {
 
     }
 
-    public void print() {
-        FileOutputStream out = new FileOutputStream("OutFile");
-        out.write(deposi);
-
+    public void print() throws FileNotFoundException {
+       RandomAccessFile out = new RandomAccessFile("Out.txt", "rw");
     }
 }
