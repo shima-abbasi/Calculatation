@@ -3,16 +3,6 @@
  */
 public class Qarz extends DepositType {
     public Qarz() {
-        super();
-        set();
-        get();
-    }
-
-    public int get() {
-        return interestRate;
-    }
-
-    public void set() {
-        super.interestRate = 0;
+        super(0);
     }
 }

@@ -10,15 +10,10 @@ import org.w3c.dom.NodeList;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
-import java.util.Vector;
+import java.util.ArrayList;
 
 public class Parser {
-    Vector<Vector> list = new Vector<Vector>();
-    static Vector inner = new Vector();
-
-    public Parser() {
-
-    }
+    static ArrayList<Deposit> depositArray = new ArrayList<Deposit>();
 
     public static void main(String arg[]) throws ClassNotFoundException {
 
@@ -38,26 +33,20 @@ public class Parser {
                 Node nNode = nList.item(temp);
                 if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                     Element eElement = (Element) nNode;
-                    Object loadClassType = Class.forName(eElement.getElementsByTagName("depositType").item(0).getTextContent()).newInstance();
+                    Class loadClassType = Class.forName(eElement.getElementsByTagName("depositType").item(0).getTextContent());
+                    loadClassType.newInstance();
                     Object load = Class.forName("Deposit").newInstance();
-                    inner.add(eElement.getElementsByTagName("customerNumber").item(0).getTextContent());
-                    inner.add(eElement.getElementsByTagName("depositType").item(0).getTextContent());
-                    inner.add(eElement.getElementsByTagName("depositBalance").item(0).getTextContent());
-                    inner.add(eElement.getElementsByTagName("durationInDays").item(0).getTextContent());
+                    int cn = Integer.parseInt(eElement.getElementsByTagName("customerNumber").item(0).getTextContent());
+                    // int eElement.getElementsByTagName("depositType").item(0).getTextContent());
+                    double db = Double.parseDouble(eElement.getElementsByTagName("depositBalance").item(0).getTextContent());
+                    int dd = Integer.parseInt(eElement.getElementsByTagName("durationInDays").item(0).getTextContent());
+                 //   depositArray.add(load);
+
                 }
-                list.add(temp, inner);
-                inner = new Vector();
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
-//        for (int i = 0; i <= list.size(); i++) {
-//            for (int j = 0; j <= inner.size(); j++) {
-//                // Object loadClassType = Class.forName();
-//            }
-//        }
 
     }
 }
