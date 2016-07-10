@@ -3,7 +3,9 @@
  */
 public  class DepositType {
     public static int interestRate;
-    public DepositType( int interestRate){
-          interestRate = interestRate;
+    public  DepositType( int i){
+         interestRate = i;
+    }
+    public DepositType() {
     }
 }

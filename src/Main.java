@@ -3,10 +3,9 @@ import java.io.RandomAccessFile;
 import java.io.File;
 
 public class Main {
-    Parser parserObj = new Parser();
-
     public static void main(String[] args) {
-
+        Parse parseObj = new Parse();
+        parseObj.parseFunction();
 
     }
 
