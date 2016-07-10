@@ -3,7 +3,8 @@
  */
 public class ShortTerm extends DepositType {
     public ShortTerm() {
-        super(10);
+        getInterestRate();
+        setInterestRate(10);
     }
 }
 
