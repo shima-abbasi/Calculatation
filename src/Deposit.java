@@ -12,10 +12,10 @@ public class Deposit {
     public String depositBalance;
     // BigDecimal depositBalance_BD = new BigDecimal(depositBalance);
 
-     public Deposit(int customerNumber, int durationInDays, double paidInterest) {
+    public Deposit(int customerNumber, int durationInDays, double paidInterest) {
         this.customerNumber = customerNumber;
         this.durationInDays = durationInDays;
-        this.paidInterest= paidInterest;
+        this.paidInterest = paidInterest;
 
     }
 

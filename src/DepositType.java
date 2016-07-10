@@ -7,6 +7,7 @@ public abstract class DepositType {
     public static int getInterestRate() {
         return interestRate;
     }
+
     public static void setInterestRate(int interestRate) {
         DepositType.interestRate = interestRate;
     }
