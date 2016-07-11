@@ -6,5 +6,4 @@ public abstract class DepositType {
     protected int interestRate =  getInterestRate();
 
     public abstract int getInterestRate();
-
 }

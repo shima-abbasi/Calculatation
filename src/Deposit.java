@@ -12,12 +12,16 @@ public class Deposit {
     private int durationInDays;
     private BigDecimal paidInterest;
     private BigDecimal depositBalance;
+    private String depositType ;
+
+
 
     //-----constructor-----------
-    public Deposit(String customerNumber, int durationInDays, BigDecimal depositBalance) {
-        this.customerNumber = customerNumber;
-        this.durationInDays = durationInDays;
-        this.depositBalance = depositBalance;
+    public Deposit(String customerNumber, int durationInDays, BigDecimal depositBalance, String depositType) throws ClassNotFoundException {
+        setDepositType(depositType);
+        setCustomerNumber(customerNumber);
+        setDurationInDays( durationInDays);
+        setDepositBalance(depositBalance);
     }
 
     //------Association----------
@@ -30,6 +34,10 @@ public class Deposit {
     }
 
     //------Getter Setter----------
+    public void setDepositType(String depositType) throws ClassNotFoundException {
+        Class loadClassType = Class.forName(depositType);
+    }
+
     public String getCustomerNumber() {
         return customerNumber;
     }
