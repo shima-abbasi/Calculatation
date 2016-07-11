@@ -12,13 +12,14 @@ public class Deposit {
     private int durationInDays;
     private BigDecimal paidInterest;
     private BigDecimal depositBalance;
+
     //-----constructor-----------
-    public Deposit(String customerNumber, int durationInDays, BigDecimal paidInterest, BigDecimal depositBalance) {
+    public Deposit(String customerNumber, int durationInDays, BigDecimal depositBalance) {
         this.customerNumber = customerNumber;
         this.durationInDays = durationInDays;
-        this.paidInterest = paidInterest;
         this.depositBalance = depositBalance;
     }
+
     //------Association----------
     public DepositType getDepositTypeAssociation() {
         return depositTypeAssociation;
@@ -27,6 +28,7 @@ public class Deposit {
     public void setDepositTypeAssociation(DepositType depositTypeAssociation) {
         this.depositTypeAssociation = depositTypeAssociation;
     }
+
     //------Getter Setter----------
     public String getCustomerNumber() {
         return customerNumber;
@@ -59,4 +61,5 @@ public class Deposit {
     public void setDepositBalance(BigDecimal depositBalance) {
         this.depositBalance = depositBalance;
     }
+}
 
