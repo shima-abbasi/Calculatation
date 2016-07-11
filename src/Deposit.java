@@ -1,3 +1,5 @@
+import java.math.BigDecimal;
+
 /**
  * Created by Shima Abbasi on 6/26/2016.
  */
@@ -6,22 +8,18 @@ public class Deposit {
     DepositType depositTypeAssociation;
 
     //----parameters-----------
-    public int customerNumber;
-    int durationInDays = 10;
-    public double paidInterest;
-    public String depositBalance;
-    // BigDecimal depositBalance_BD = new BigDecimal(depositBalance);
-
-    public Deposit(int customerNumber, int durationInDays, double paidInterest) {
+    public String customerNumber;
+    private int durationInDays;
+    private BigDecimal paidInterest;
+    private BigDecimal depositBalance;
+    //-----constructor-----------
+    public Deposit(String customerNumber, int durationInDays, BigDecimal paidInterest, BigDecimal depositBalance) {
         this.customerNumber = customerNumber;
         this.durationInDays = durationInDays;
         this.paidInterest = paidInterest;
-
+        this.depositBalance = depositBalance;
     }
-
-    public Deposit() {
-    }
-
+    //------Association----------
     public DepositType getDepositTypeAssociation() {
         return depositTypeAssociation;
     }
@@ -29,12 +27,12 @@ public class Deposit {
     public void setDepositTypeAssociation(DepositType depositTypeAssociation) {
         this.depositTypeAssociation = depositTypeAssociation;
     }
-
-    public int getCustomerNumber() {
+    //------Getter Setter----------
+    public String getCustomerNumber() {
         return customerNumber;
     }
 
-    public void setCustomerNumber(int customerNumber) {
+    public void setCustomerNumber(String customerNumber) {
         this.customerNumber = customerNumber;
     }
 
@@ -46,19 +44,19 @@ public class Deposit {
         this.durationInDays = durationInDays;
     }
 
-    public double getPaidInterest() {
+    public BigDecimal getPaidInterest() {
         return paidInterest;
     }
 
-    public void setPaidInterest(double paidInterest) {
+    public void setPaidInterest(BigDecimal paidInterest) {
         this.paidInterest = paidInterest;
     }
 
-    public String getDepositBalance() {
+    public BigDecimal getDepositBalance() {
         return depositBalance;
     }
 
-    public void setDepositBalance(String depositBalance) {
+    public void setDepositBalance(BigDecimal depositBalance) {
         this.depositBalance = depositBalance;
     }
-}
+
