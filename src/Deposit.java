@@ -34,8 +34,9 @@ public class Deposit {
     }
 
     //------Getter Setter----------
-    public void setDepositType(String depositType) throws ClassNotFoundException {
+    public void setDepositType(String depositType) throws ClassNotFoundException, IllegalAccessException, InstantiationException {
         Class loadClassType = Class.forName(depositType);
+        Object loadObjectType = loadClassType.newInstance();
     }
 
     public String getCustomerNumber() {
