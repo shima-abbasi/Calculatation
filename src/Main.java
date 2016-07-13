@@ -1,24 +1,13 @@
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.RandomAccessFile;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Parse parseObj = new Parse();
         ArrayList<Deposit> depositArray = parseObj.parseFunction();
         Collections.sort(depositArray , Collections.reverseOrder());
-    }
+        parseObj.print(depositArray, "out.txt");
 
-    public void print(ArrayList<Deposit> deposits) {
-        RandomAccessFile out = null;
-        try {
-            File file = new File("out.txt");
-            out = new RandomAccessFile(file, "rw");
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-
-        }
     }
 }
