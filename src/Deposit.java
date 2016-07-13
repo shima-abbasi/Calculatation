@@ -4,7 +4,7 @@ import java.math.RoundingMode;
 /**
  * Created by Shima Abbasi on 6/26/2016.
  */
-public class Deposit {
+public class Deposit implements Comparable<Deposit> {
     //-----Association---------------------
     DepositType depositTypeAssociation;
 
@@ -15,6 +15,7 @@ public class Deposit {
     public void setDepositTypeAssociation(DepositType depositTypeAssociation) {
         this.depositTypeAssociation = depositTypeAssociation;
     }
+
     //----parameters-----------
     private String customerNumber;
     private BigDecimal durationInDays;
@@ -58,6 +59,11 @@ public class Deposit {
 
     public void setInterestRate() {
         interestRate = BigDecimal.valueOf(depositTypeAssociation.getInterestRate());
+    }
+
+    @Override
+    public int compareTo(Deposit deposits){
+        return paidInterest.compareTo(deposits.paidInterest);
     }
 
 }
