@@ -31,7 +31,7 @@ public class Deposit {
         setDepositBalance(depositBalance);
         setDurationInDays(durationInDays);
         setInterestRate();
-        calculateInterestPaid();
+        setPaidInterest();
     }
 
     //------Getter Setter----------
@@ -52,16 +52,13 @@ public class Deposit {
         this.durationInDays = durationInDays;
     }
 
-    public void setPaidInterest(BigDecimal paidInterest) {
-        this.paidInterest = paidInterest;
+    public void setPaidInterest() {
+        this.paidInterest = (interestRate.multiply(depositBalance).multiply(durationInDays)).divide(BigDecimal.valueOf(36500), RoundingMode.HALF_DOWN);
     }
 
     public void setInterestRate() {
         interestRate = BigDecimal.valueOf(depositTypeAssociation.getInterestRate());
     }
-    //---------Other Functions------------
-    public void calculateInterestPaid() {
-        paidInterest=(interestRate.multiply(depositBalance).multiply(durationInDays)).divide(BigDecimal.valueOf(36500), RoundingMode.HALF_DOWN);
-    }
+
 }
 
