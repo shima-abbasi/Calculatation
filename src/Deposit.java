@@ -1,30 +1,13 @@
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 /**
  * Created by Shima Abbasi on 6/26/2016.
  */
 public class Deposit {
-    //-----objects---------------------
+    //-----Association---------------------
     DepositType depositTypeAssociation;
 
-    //----parameters-----------
-    public String customerNumber;
-    private int durationInDays;
-    private BigDecimal paidInterest;
-    private BigDecimal depositBalance;
-    private String depositType ;
-
-
-
-    //-----constructor-----------
-    public Deposit(String customerNumber, int durationInDays, BigDecimal depositBalance, String depositType) throws ClassNotFoundException {
-        setDepositType(depositType);
-        setCustomerNumber(customerNumber);
-        setDurationInDays( durationInDays);
-        setDepositBalance(depositBalance);
-    }
-
-    //------Association----------
     public DepositType getDepositTypeAssociation() {
         return depositTypeAssociation;
     }
@@ -32,43 +15,53 @@ public class Deposit {
     public void setDepositTypeAssociation(DepositType depositTypeAssociation) {
         this.depositTypeAssociation = depositTypeAssociation;
     }
+    //----parameters-----------
+    private String customerNumber;
+    private BigDecimal durationInDays;
+    private BigDecimal paidInterest;
+    private BigDecimal depositBalance;
+    private String depositType;
+    private BigDecimal interestRate;
+
+
+    //-----constructor-----------
+    public Deposit(String customerNumber, String depositType, BigDecimal depositBalance, BigDecimal durationInDays) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
+        setCustomerNumber(customerNumber);
+        setDepositType(depositType);
+        setDepositBalance(depositBalance);
+        setDurationInDays(durationInDays);
+        setInterestRate();
+        calculateInterestPaid();
+    }
 
     //------Getter Setter----------
-    public void setDepositType(String depositType) throws ClassNotFoundException, IllegalAccessException, InstantiationException {
-        Class loadClassType = Class.forName(depositType);
-        Object loadObjectType = loadClassType.newInstance();
-    }
-
-    public String getCustomerNumber() {
-        return customerNumber;
-    }
-
     public void setCustomerNumber(String customerNumber) {
         this.customerNumber = customerNumber;
     }
 
-    public int getDurationInDays() {
-        return durationInDays;
+    public void setDepositType(String depositType) throws ClassNotFoundException, IllegalAccessException, InstantiationException {
+        Class loadClassType = Class.forName(depositType);
+        this.depositTypeAssociation = (DepositType) loadClassType.newInstance();
     }
 
-    public void setDurationInDays(int durationInDays) {
+    public void setDepositBalance(BigDecimal depositBalance) {
+        this.depositBalance = depositBalance;
+    }
+
+    public void setDurationInDays(BigDecimal durationInDays) {
         this.durationInDays = durationInDays;
-    }
-
-    public BigDecimal getPaidInterest() {
-        return paidInterest;
     }
 
     public void setPaidInterest(BigDecimal paidInterest) {
         this.paidInterest = paidInterest;
     }
 
-    public BigDecimal getDepositBalance() {
-        return depositBalance;
+    public void setInterestRate() {
+        interestRate = BigDecimal.valueOf(depositTypeAssociation.getInterestRate());
     }
-
-    public void setDepositBalance(BigDecimal depositBalance) {
-        this.depositBalance = depositBalance;
+    //---------Other Functions------------
+    public void calculateInterestPaid() {
+        paidInterest=(interestRate.multiply(depositBalance).multiply(durationInDays)).divide(BigDecimal.valueOf(36500), RoundingMode.HALF_UP);
     }
 }
 

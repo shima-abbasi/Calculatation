@@ -1,11 +1,12 @@
 import java.io.FileNotFoundException;
 import java.io.RandomAccessFile;
 import java.io.File;
+import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
         Parse parseObj = new Parse();
-        parseObj.parseFunction();
+        ArrayList<Deposit> depositArray = parseObj.parseFunction();
 
     }
 
