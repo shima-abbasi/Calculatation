@@ -61,7 +61,7 @@ public class Deposit {
     }
     //---------Other Functions------------
     public void calculateInterestPaid() {
-        paidInterest=(interestRate.multiply(depositBalance).multiply(durationInDays)).divide(BigDecimal.valueOf(36500), RoundingMode.HALF_UP);
+        paidInterest=(interestRate.multiply(depositBalance).multiply(durationInDays)).divide(BigDecimal.valueOf(36500), RoundingMode.HALF_DOWN);
     }
 }
 
