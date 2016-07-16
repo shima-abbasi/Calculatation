@@ -31,24 +31,25 @@ public class Parse {
 
             for (int temp = 0; temp < nList.getLength(); temp++) {
                 Node nNode = nList.item(temp);
-               try {
-                   if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-                       Element eElement = (Element) nNode;
-                       String customerNumber = eElement.getElementsByTagName("customerNumber").item(0).getTextContent();
-                       String depositType = eElement.getElementsByTagName("depositType").item(0).getTextContent();
-                       BigDecimal depositBalance = new BigDecimal(eElement.getElementsByTagName("depositBalance").item(0).getTextContent());
-                       BigDecimal durationInDays = new BigDecimal(eElement.getElementsByTagName("durationInDays").item(0).getTextContent());
-                       Deposit deposit= new Deposit(customerNumber, depositType, depositBalance, durationInDays);
-                       depositArray.add(deposit);
+                String customerNumber = null;
+                try {
+                    if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+                        Element eElement = (Element) nNode;
+                        customerNumber = eElement.getElementsByTagName("customerNumber").item(0).getTextContent();
+                        String depositType = eElement.getElementsByTagName("depositType").item(0).getTextContent();
+                        BigDecimal depositBalance = new BigDecimal(eElement.getElementsByTagName("depositBalance").item(0).getTextContent());
+                        BigDecimal durationInDays = new BigDecimal(eElement.getElementsByTagName("durationInDays").item(0).getTextContent());
+                        Deposit deposit = new Deposit(customerNumber, depositType, depositBalance, durationInDays);
+                        depositArray.add(deposit);
 
-                   }
-               }catch (IncorrectBalanceValueException e){
-                   System.out.println( e.getMessage());
-               }catch (IncorrectDaysValueException e){
-                   System.out.println(e.getMessage());
-               }catch (ClassNotFoundException e){
-                   System.out.println(e.getMessage());
-               }
+                    }
+                } catch (IncorrectBalanceValueException e) {
+                    System.out.println(e.getMessage());
+                } catch (IncorrectDaysValueException e) {
+                    System.out.println(e.getMessage());
+                } catch (ClassNotFoundException e) {
+                    System.out.println("For customer: " + customerNumber + " : Deposit Balance value is not correct");
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();

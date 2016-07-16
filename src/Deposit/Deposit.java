@@ -56,9 +56,9 @@ public class Deposit implements Comparable<Deposit> {
         this.depositTypeAssociation = (DepositType) loadClassType.newInstance();
     }
 
-    public void setDepositBalance(BigDecimal depositBalance) throws IncorrectBalanceValueException{
+    public void setDepositBalance(BigDecimal depositBalance) throws IncorrectBalanceValueException {
         if (depositBalance.compareTo(BigDecimal.ZERO) < 0)
-            throw new IncorrectBalanceValueException("For customer: " + customerNumber + " : Deposit Balance value is not correct" );
+            throw new IncorrectBalanceValueException("For customer: " + customerNumber + " : Deposit Balance value is not correct");
         this.depositBalance = depositBalance;
     }
 
