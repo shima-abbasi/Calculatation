@@ -86,6 +86,5 @@ public class Deposit implements Comparable<Deposit> {
     public int compareTo(Deposit deposits) {
         return paidInterest.compareTo(deposits.paidInterest);
     }
-
 }
 
