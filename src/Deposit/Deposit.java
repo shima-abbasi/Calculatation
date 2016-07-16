@@ -50,7 +50,6 @@ public class Deposit implements Comparable<Deposit> {
         return customerNumber;
     }
 
-
     public void setDepositType(String depositType) throws ClassNotFoundException, IllegalAccessException, InstantiationException {
         Class loadClassType = Class.forName("Deposit." + depositType);
         this.depositTypeAssociation = (DepositType) loadClassType.newInstance();
@@ -58,7 +57,7 @@ public class Deposit implements Comparable<Deposit> {
 
     public void setDepositBalance(BigDecimal depositBalance) throws IncorrectValueExceptions {
         if (depositBalance.compareTo(BigDecimal.ZERO) < 0)
-            throw new IncorrectValueExceptions("Deposit Balance value ins not correct");
+            throw new IncorrectValueExceptions("Deposit Balance value is not correct");
         this.depositBalance = depositBalance;
     }
 
@@ -67,8 +66,6 @@ public class Deposit implements Comparable<Deposit> {
             this.durationInDays = durationInDays;
         else
             throw new IncorrectValueExceptions("Duration In Days value is not correct");
-
-
     }
 
     public void setPaidInterest() {
@@ -78,7 +75,6 @@ public class Deposit implements Comparable<Deposit> {
     public BigDecimal getPaidInterest() {
         return paidInterest;
     }
-
 
     public void setInterestRate() {
         interestRate = BigDecimal.valueOf(depositTypeAssociation.getInterestRate());
