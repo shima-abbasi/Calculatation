@@ -32,7 +32,7 @@ public class Deposit implements Comparable<Deposit> {
 
 
     //-----constructor-----------
-    public Deposit(String customerNumber, String depositType, BigDecimal depositBalance, BigDecimal durationInDays) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IncorrectValueExceptions {
+    public Deposit(String customerNumber, String depositType, BigDecimal depositBalance, BigDecimal durationInDays) throws ReflectiveOperationException, IncorrectValueExceptions {
         setCustomerNumber(customerNumber);
         setDepositType(depositType);
         setDepositBalance(depositBalance);
@@ -52,21 +52,23 @@ public class Deposit implements Comparable<Deposit> {
 
 
     public void setDepositType(String depositType) throws ClassNotFoundException, IllegalAccessException, InstantiationException {
-        Class loadClassType = Class.forName(depositType);
+        Class loadClassType = Class.forName("Deposit." + depositType);
         this.depositTypeAssociation = (DepositType) loadClassType.newInstance();
     }
 
-    public void setDepositBalance(BigDecimal depositBalance) throws IncorrectValueExceptions{
-        if(depositBalance.compareTo(BigDecimal.ZERO)<0)
-           throw  new  IncorrectValueExceptions("Deposit Balance value ins not correct");
+    public void setDepositBalance(BigDecimal depositBalance) throws IncorrectValueExceptions {
+        if (depositBalance.compareTo(BigDecimal.ZERO) < 0)
+            throw new IncorrectValueExceptions("Deposit Balance value ins not correct");
         this.depositBalance = depositBalance;
     }
 
-    public void setDurationInDays(BigDecimal durationInDays) throws  IncorrectValueExceptions{
+    public void setDurationInDays(BigDecimal durationInDays) throws IncorrectValueExceptions {
         if (durationInDays.compareTo(BigDecimal.ZERO) > 0)
-            throw  new IncorrectValueExceptions("Duration In Days value is not correct");
+            this.durationInDays = durationInDays;
+        else
+            throw new IncorrectValueExceptions("Duration In Days value is not correct");
 
-        this.durationInDays = durationInDays;
+
     }
 
     public void setPaidInterest() {
