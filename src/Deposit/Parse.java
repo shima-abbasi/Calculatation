@@ -48,7 +48,7 @@ public class Parse {
                 } catch (IncorrectDaysValueException e) {
                     System.out.println(e.getMessage());
                 } catch (ClassNotFoundException e) {
-                    System.out.println("For customer: " + customerNumber + " : Deposit Balance value is not correct");
+                    System.out.println("For customer: " + customerNumber + " --> Deposit Balance value is not correct");
                 }
             }
         } catch (Exception e) {

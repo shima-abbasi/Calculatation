@@ -58,7 +58,7 @@ public class Deposit implements Comparable<Deposit> {
 
     public void setDepositBalance(BigDecimal depositBalance) throws IncorrectBalanceValueException {
         if (depositBalance.compareTo(BigDecimal.ZERO) < 0)
-            throw new IncorrectBalanceValueException("For customer: " + customerNumber + " : Deposit Balance value is not correct");
+            throw new IncorrectBalanceValueException("For customer: " + customerNumber + " --> Deposit Balance value is not correct");
         this.depositBalance = depositBalance;
     }
 
@@ -66,7 +66,7 @@ public class Deposit implements Comparable<Deposit> {
         if (durationInDays.compareTo(BigDecimal.ZERO) > 0)
             this.durationInDays = durationInDays;
         else
-            throw new IncorrectDaysValueException("For customer: " + customerNumber + " :Duration In Days value is not correct");
+            throw new IncorrectDaysValueException("For customer: " + customerNumber + " -->Duration In Days value is not correct");
     }
 
     public void setPaidInterest() {
