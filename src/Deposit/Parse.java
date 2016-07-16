@@ -18,12 +18,6 @@ import java.util.ArrayList;
 import static java.lang.System.out;
 
 public class Parse {
-
-
-    public Parse() {
-
-    }
-
     public ArrayList<Deposit> parseFunction() {
         ArrayList<Deposit> depositArray = new ArrayList<Deposit>();
         try {
