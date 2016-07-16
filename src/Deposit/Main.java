@@ -5,8 +5,6 @@ import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import static java.lang.System.out;
-
 public class Main {
     public static void main(String[] args) throws IOException {
         Parse parseObj = new Parse();
@@ -18,9 +16,9 @@ public class Main {
     public static void print(ArrayList<Deposit> depositArray, String filePath) throws IOException {
         RandomAccessFile file = new RandomAccessFile(filePath, "rw");
         for (Deposit deposit : depositArray) {
-            file.writeChars(deposit.getCustomerNumber() + "#" + deposit.getPaidInterest());
-            out.println("");
+            file.writeBytes(deposit.getCustomerNumber() + "#" + deposit.getPaidInterest() + "\n");
         }
+        file.seek(0);
         file.close();
     }
 }
