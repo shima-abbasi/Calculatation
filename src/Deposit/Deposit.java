@@ -1,5 +1,7 @@
 package Deposit;
 
+import Exceptions.IncorrectValueExceptions;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
@@ -30,7 +32,7 @@ public class Deposit implements Comparable<Deposit> {
 
 
     //-----constructor-----------
-    public Deposit(String customerNumber, String depositType, BigDecimal depositBalance, BigDecimal durationInDays) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
+    public Deposit(String customerNumber, String depositType, BigDecimal depositBalance, BigDecimal durationInDays) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IncorrectValueExceptions {
         setCustomerNumber(customerNumber);
         setDepositType(depositType);
         setDepositBalance(depositBalance);
@@ -54,11 +56,16 @@ public class Deposit implements Comparable<Deposit> {
         this.depositTypeAssociation = (DepositType) loadClassType.newInstance();
     }
 
-    public void setDepositBalance(BigDecimal depositBalance) {
+    public void setDepositBalance(BigDecimal depositBalance) throws IncorrectValueExceptions{
+        if(depositBalance.compareTo(BigDecimal.ZERO)<0)
+           throw  new  IncorrectValueExceptions("Deposit Balance value ins not correct");
         this.depositBalance = depositBalance;
     }
 
-    public void setDurationInDays(BigDecimal durationInDays) {
+    public void setDurationInDays(BigDecimal durationInDays) throws  IncorrectValueExceptions{
+        if (durationInDays.compareTo(BigDecimal.ZERO) > 0)
+            throw  new IncorrectValueExceptions("Duration In Days value is not correct");
+
         this.durationInDays = durationInDays;
     }
 
