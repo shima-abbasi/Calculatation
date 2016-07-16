@@ -10,12 +10,8 @@ import org.w3c.dom.NodeList;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
-import java.io.IOException;
-import java.io.RandomAccessFile;
 import java.math.BigDecimal;
 import java.util.ArrayList;
-
-import static java.lang.System.out;
 
 public class Parse {
     public ArrayList<Deposit> parseFunction() {
@@ -47,14 +43,5 @@ public class Parse {
             e.printStackTrace();
         }
         return depositArray;
-    }
-
-    public void print(ArrayList<Deposit> depositArray, String filePath) throws IOException {
-        RandomAccessFile file = new RandomAccessFile(filePath, "rw");
-        for (Deposit deposit : depositArray) {
-            file.writeChars(deposit.getCustomerNumber() + "#" + deposit.getPaidInterest());
-            out.println("");
-        }
-        file.close();
     }
 }

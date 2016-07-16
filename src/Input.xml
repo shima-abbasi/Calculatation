@@ -4,7 +4,7 @@
         <customerNumber>534900</customerNumber>
         <depositType>ShortTerm</depositType>
         <depositBalance>200000</depositBalance>
-        <durationInDays>0</durationInDays>
+        <durationInDays>25</durationInDays>
     </deposit>
     <deposit>
         <customerNumber>48483</customerNumber>
