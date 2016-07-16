@@ -57,10 +57,10 @@ public class Parse {
 
     public void print(ArrayList<Deposit> depositArray, String filePath) throws IOException {
         RandomAccessFile file = new RandomAccessFile(filePath, "rw");
-            for (Deposit deposit : depositArray) {
-                file.writeChars(deposit.getCustomerNumber() + "#" + deposit.getPaidInterest());
-                out.println("");
-            }
+        for (Deposit deposit : depositArray) {
+            file.writeChars(deposit.getCustomerNumber() + "#" + deposit.getPaidInterest());
+            out.println("");
+        }
         file.close();
     }
 }
