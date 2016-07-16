@@ -2,6 +2,7 @@ package Deposit; /**
  * Created by Shima Abbasi on 6/28/2016.
  */
 
+import Exceptions.IncorrectValueExceptions;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -29,15 +30,20 @@ public class Parse {
 
             for (int temp = 0; temp < nList.getLength(); temp++) {
                 Node nNode = nList.item(temp);
-                if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-                    Element eElement = (Element) nNode;
-                    String customerNumber = eElement.getElementsByTagName("customerNumber").item(0).getTextContent();
-                    String depositType = eElement.getElementsByTagName("depositType").item(0).getTextContent();
-                    BigDecimal depositBalance = new BigDecimal(eElement.getElementsByTagName("depositBalance").item(0).getTextContent());
-                    BigDecimal durationInDays = new BigDecimal(eElement.getElementsByTagName("durationInDays").item(0).getTextContent());
-                    depositArray.add(new Deposit(customerNumber, depositType, depositBalance, durationInDays));
+               try {
+                   if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+                       Element eElement = (Element) nNode;
+                       String customerNumber = eElement.getElementsByTagName("customerNumber").item(0).getTextContent();
+                       String depositType = eElement.getElementsByTagName("depositType").item(0).getTextContent();
+                       BigDecimal depositBalance = new BigDecimal(eElement.getElementsByTagName("depositBalance").item(0).getTextContent());
+                       BigDecimal durationInDays = new BigDecimal(eElement.getElementsByTagName("durationInDays").item(0).getTextContent());
+                       Deposit deposit= new Deposit(customerNumber, depositType, depositBalance, durationInDays);
+                       depositArray.add(deposit);
 
-                }
+                   }
+               }catch (IncorrectValueExceptions e){
+                   System.out.println(e.getMessage());
+               }
             }
         } catch (Exception e) {
             e.printStackTrace();

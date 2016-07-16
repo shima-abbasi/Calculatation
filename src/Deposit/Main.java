@@ -1,7 +1,6 @@
 package Deposit;
 
-import java.io.IOException;
-import java.io.RandomAccessFile;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -14,11 +13,10 @@ public class Main {
 
     }
     public static void print(ArrayList<Deposit> depositArray, String filePath) throws IOException {
-        RandomAccessFile file = new RandomAccessFile(filePath, "rw");
+        PrintStream printStream = new PrintStream(new  FileOutputStream("out.txt"));
         for (Deposit deposit : depositArray) {
-            file.writeBytes(deposit.getCustomerNumber() + "#" + deposit.getPaidInterest() + "\n");
+            printStream.println(deposit.getCustomerNumber() + "#" + deposit.getPaidInterest() );
         }
-        file.seek(0);
-        file.close();
+        printStream.close();
     }
 }
