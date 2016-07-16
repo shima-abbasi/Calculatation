@@ -5,9 +5,8 @@ package Deposit;
  */
 public class ShortTerm extends DepositType {
     @Override
-     public  int getInterestRate ()
-     {
-         return interestRate = 10 ;
-     }
+    public int getInterestRate() {
+        return interestRate = 10;
+    }
 }
 

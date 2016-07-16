@@ -5,8 +5,7 @@ package Deposit;
  */
 public class LongTerm extends DepositType {
     @Override
-    public int getInterestRate ()
-    {
-        return interestRate = 20 ;
+    public int getInterestRate() {
+        return interestRate = 20;
     }
 }

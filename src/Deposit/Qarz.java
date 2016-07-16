@@ -5,8 +5,7 @@ package Deposit;
  */
 public class Qarz extends DepositType {
     @Override
-    public int getInterestRate ()
-    {
-        return interestRate = 0 ;
+    public int getInterestRate() {
+        return interestRate = 0;
     }
 }
