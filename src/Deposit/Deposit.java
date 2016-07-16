@@ -1,6 +1,7 @@
 package Deposit;
 
-import Exceptions.IncorrectValueExceptions;
+import Exceptions.IncorrectBalanceValueException;
+import Exceptions.IncorrectDaysValueException;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -32,7 +33,7 @@ public class Deposit implements Comparable<Deposit> {
 
 
     //-----constructor-----------
-    public Deposit(String customerNumber, String depositType, BigDecimal depositBalance, BigDecimal durationInDays) throws ReflectiveOperationException, IncorrectValueExceptions {
+    public Deposit(String customerNumber, String depositType, BigDecimal depositBalance, BigDecimal durationInDays) throws ReflectiveOperationException, IncorrectBalanceValueException, IncorrectDaysValueException {
         setCustomerNumber(customerNumber);
         setDepositType(depositType);
         setDepositBalance(depositBalance);
@@ -55,17 +56,17 @@ public class Deposit implements Comparable<Deposit> {
         this.depositTypeAssociation = (DepositType) loadClassType.newInstance();
     }
 
-    public void setDepositBalance(BigDecimal depositBalance) throws IncorrectValueExceptions {
+    public void setDepositBalance(BigDecimal depositBalance) throws IncorrectBalanceValueException{
         if (depositBalance.compareTo(BigDecimal.ZERO) < 0)
-            throw new IncorrectValueExceptions("Deposit Balance value is not correct");
+            throw new IncorrectBalanceValueException("For customer: " + customerNumber + " : Deposit Balance value is not correct" );
         this.depositBalance = depositBalance;
     }
 
-    public void setDurationInDays(BigDecimal durationInDays) throws IncorrectValueExceptions {
+    public void setDurationInDays(BigDecimal durationInDays) throws IncorrectDaysValueException {
         if (durationInDays.compareTo(BigDecimal.ZERO) > 0)
             this.durationInDays = durationInDays;
         else
-            throw new IncorrectValueExceptions("Duration In Days value is not correct");
+            throw new IncorrectDaysValueException("For customer: " + customerNumber + " :Duration In Days value is not correct");
     }
 
     public void setPaidInterest() {

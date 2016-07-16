@@ -2,7 +2,7 @@
 <deposits>
     <deposit>
         <customerNumber>534900</customerNumber>
-        <depositType>hortTerm</depositType>
+        <depositType>ShotTerm</depositType>
         <depositBalance>200000</depositBalance>
         <durationInDays>0</durationInDays>
     </deposit>

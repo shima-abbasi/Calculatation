@@ -2,7 +2,8 @@ package Deposit; /**
  * Created by Shima Abbasi on 6/28/2016.
  */
 
-import Exceptions.IncorrectValueExceptions;
+import Exceptions.IncorrectBalanceValueException;
+import Exceptions.IncorrectDaysValueException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -41,7 +42,11 @@ public class Parse {
                        depositArray.add(deposit);
 
                    }
-               }catch (IncorrectValueExceptions e){
+               }catch (IncorrectBalanceValueException e){
+                   System.out.println( e.getMessage());
+               }catch (IncorrectDaysValueException e){
+                   System.out.println(e.getMessage());
+               }catch (ClassNotFoundException e){
                    System.out.println(e.getMessage());
                }
             }
